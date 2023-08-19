@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MainApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEAN App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body ng-controller="principalController">
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Records: {{ areas.length }}</h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-1">
+                <table class="table table-striped">
+                    <tr class="info">
+                        <td>Name</td>
+                        <td>Abbreviation</td>
+                        <td>State</td>
+                    </tr>
+                    <tr ng-repeat="area in areas" ng-click="selectArea(area)">
+                        <td>{{ area.Name }}</td>
+                        <td>{{ area.Abbreviation }}</td>
+                        <td>{{ area.State }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-4 col-sm-offset-1 text-center">
+                <form name="myForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Name" ng-model="newArea.Name" required>
+                        <br>
+                        <input type="text" class="form-control input-lg text-center" placeholder="Abbreviation" ng-model="newArea.Abbreviation" required>
+                        <br>
+                        <input type="text" class="form-control input-lg text-center" placeholder="State" ng-model="newArea.State" required>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-lg" ng-click="registerArea()" ng-disabled="myForm.$invalid || selected">Add</button>
+                    <button type="submit" class="btn btn-warning btn-lg" ng-click="updateArea(newArea)" ng-disabled="!newArea.Name || !newArea.Abbreviation || !newArea.State || !selected">Update</button>
+                    <button type="submit" class="btn btn-danger btn-lg" ng-click="deleteArea(newArea)" ng-disabled="!newArea.Name || !newArea.Abbreviation || !newArea.State || !selected">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/1.2.16/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.16/angular.min.js"></script>
+    <script src="core.js"></script>
+</body>
+</html>
